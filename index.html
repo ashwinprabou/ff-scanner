@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Receipt Scanner</title>
+  </head>
+  <body>
+    <h1>Upload Receipt</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <input type="file" name="receipt" accept="image/*" required />
+      <button type="submit">Scan</button>
+    </form>
+
+    {% if raw_text %}
+    <h2>Detected Lines</h2>
+    <pre>{{ raw_text | join('\n') }}</pre>
+
+    <h2>Product Candidates</h2>
+    <ul>
+      {% for line in product_lines %}
+      <li>{{ line }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>
